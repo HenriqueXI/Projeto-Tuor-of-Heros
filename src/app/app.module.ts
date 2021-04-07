@@ -7,6 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
@@ -20,6 +21,8 @@ import { HeroesComponent } from './heroes/heroes.component';
 import { HeroSearchComponent } from './hero-search/hero-search.component';
 import { MessagesComponent } from './messages/messages.component';
 import { HeroEditComponent } from './hero-edit/hero-edit.component';
+import { HeroNewComponent } from './hero-new/hero-new.component';
+import { HeroFormComponent } from './hero-form/hero-form.component';
 
 
 @NgModule({
@@ -39,7 +42,8 @@ import { HeroEditComponent } from './hero-edit/hero-edit.component';
     MatInputModule,
     MatSelectModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    MatIconModule
   ],
   declarations: [
     AppComponent,
@@ -48,7 +52,9 @@ import { HeroEditComponent } from './hero-edit/hero-edit.component';
     HeroDetailComponent,
     MessagesComponent,
     HeroSearchComponent,
-    HeroEditComponent
+    HeroEditComponent,
+    HeroNewComponent,
+    HeroFormComponent
   ],
   bootstrap: [ AppComponent ]
 })
