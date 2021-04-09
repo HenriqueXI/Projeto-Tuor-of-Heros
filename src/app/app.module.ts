@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule } from '@angular/material/input';
@@ -41,7 +41,8 @@ import { HeroFormComponent } from './hero-form/hero-form.component';
     MatSelectModule,
     MatCardModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    ReactiveFormsModule
   ],
   declarations: [
     AppComponent,
@@ -52,8 +53,9 @@ import { HeroFormComponent } from './hero-form/hero-form.component';
     HeroSearchComponent,
     HeroEditComponent,
     HeroNewComponent,
-    HeroFormComponent
+    HeroFormComponent,
   ],
-  bootstrap: [ AppComponent ]
+  bootstrap: [ AppComponent ],
+  providers: [FormBuilder]
 })
 export class AppModule { }

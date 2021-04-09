@@ -15,14 +15,15 @@ export class HeroService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-  private heroesUrl = ('https://api-default-309921.rj.r.appspot.com');  // URL to api
+  private heroesUrl = `https://api-default-309921.rj.r.appspot.com`;  // URL to api
 
   constructor(
     private http: HttpClient,
     private messageService: MessageService) { }
 
+
   getHeroes(): Observable<HeroGetResponse> {
-    const url = (`${this.heroesUrl}/heroes`);
+    const url = `${this.heroesUrl}/heroes`;
     return this.http.get<HeroGetResponse>(url)
       .pipe(
         tap(_ => this.log('fetched heroes')),
@@ -30,8 +31,13 @@ export class HeroService {
       );
   }
 
-  getRandom(){
-
+  getHeroRandom(): Observable<HeroGetResponse> {
+    const url = (`${this.heroesUrl}/top-heroes`);
+    return this.http.get<HeroGetResponse>(url)
+      .pipe(
+        tap(_ => this.log('fetched heroes')),
+        catchError(this.handleError<HeroGetResponse>('getHeroes', {heroes: [], cursor: ""}))
+      );
   }
 
   getHeroNo404<Data>(id: string): Observable<Hero> {
@@ -60,7 +66,7 @@ export class HeroService {
     if (!term.trim()) {
       return of([]);
     }
-    return this.http.get<Hero[]>(`${this.heroesUrl}/heroes/?name=${term}`).pipe(
+    return this.http.get<Hero[]>(`${this.heroesUrl}/hero/name=${term}`).pipe(
       tap(x => x.length ?
          this.log(`found heroes matching "${term}"`) :
          this.log(`no heroes matching "${term}"`)),
@@ -78,20 +84,18 @@ export class HeroService {
   }
 
   deleteHero(id: string): Observable<Hero> {
-    const url = `${this.heroesUrl}/heroes${id}`;
-
+    const url = `${this.heroesUrl}/hero/${id}`;
     return this.http.delete<Hero>(url, this.httpOptions).pipe(
       tap(_ => this.log(`deleted hero id=${id}`)),
       catchError(this.handleError<Hero>('deleteHero'))
     );
   }
 
-  updateHero(hero: Hero): Observable<any> {
-    const url = `${this.heroesUrl}/heroes`;
+  updateHero(hero: Hero): Observable<Hero> {
     const heroParams = {hero: hero};
-    return this.http.put(url, heroParams, this.httpOptions).pipe(
-      tap(_ => this.log(`updated hero id=${hero.id}`)),
-      catchError(this.handleError<any>('updateHero'))
+    return this.http.post<Hero>(`${this.heroesUrl}/hero/${hero.id}`, heroParams, this.httpOptions).pipe(
+    tap(_ => this.log(`updated hero id=${hero.id}`)),
+    catchError(this.handleError<any>('updateHero'))
     );
   }
 
