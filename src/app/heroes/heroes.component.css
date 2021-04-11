@@ -14,11 +14,6 @@ input {
   box-sizing: border-box;
 }
 
-.heroes li {
-  position: relative;
-  cursor: pointer;
-}
-
 .heroes li:hover {
   left: 0.1em;
 }
@@ -26,7 +21,6 @@ input {
 .heroes a {
   color: #333;
   text-decoration: none;
-  background-color: #eee;
   margin: 0.5em;
   padding: 0.3em 0;
   height: 1.6em;
@@ -37,11 +31,9 @@ input {
 
 .heroes a:hover {
   color: #2c3a41;
-  background-color: #e6e6e6;
 }
 
 .heroes a:active {
-  background-color: #525252;
   color: #fafafa;
 }
 
@@ -66,6 +58,7 @@ input {
   padding: 0.5rem 1.5rem;
   font-size: 1rem;
   margin-bottom: 2rem;
+  position: fixed;
 }
 
 .add-button:hover {
@@ -74,16 +67,77 @@ input {
 }
 
 button.delete {
-  position: absolute;
-  left: 210px;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  left: 100%;
   top: 5px;
-  background-color: white;
-  color: #525252;
   font-size: 1.1rem;
   padding: 1px 10px 3px 10px;
+  justify-content: right;
 }
 
 button.delete:hover {
-  background-color: #525252;
   color: white;
+}
+
+.add {
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  position: fixed;
+  bottom: 30px;
+  right: 20px;
+  padding: 10px;
+  min-width: 60px;
+  min-height: 60px;
+  z-index: 9999;
+}
+
+.add .add-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.search-results {
+  width: 100%;
+  height: 100%;
+}
+.search-results mat-card {
+  width: 100%;
+  font-size: 2rem;
+  background: none;
+}
+
+.search-results li {
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+}
+
+.img {
+  left: 40px;
+  position: absolute;
+  width: 120px;
+  height: 120px;
+}
+
+.img img {
+  width: 100%;
+  height: 100%;
+}
+
+.text {
+  position: absolute;
+  left: 180px;
+}
+
+.text mat-card-title {
+  width: 100%;
+  height: 100%;
 }

@@ -22,8 +22,8 @@ export class HeroService {
     private messageService: MessageService) { }
 
 
-  getHeroes(): Observable<HeroGetResponse> {
-    const url = `${this.heroesUrl}/heroes`;
+  getHeroes(cursor?: string): Observable<HeroGetResponse> {
+    const url = `${this.heroesUrl}/heroes?cursor=${cursor || ''}`;
     return this.http.get<HeroGetResponse>(url)
       .pipe(
         tap(_ => this.log('fetched heroes')),

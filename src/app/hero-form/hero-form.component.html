@@ -6,6 +6,8 @@
         <mat-form-field class="full-width">
           <mat-label>Hero Name</mat-label>
           <input matInput placeholder="Hero Name" formControlName = "name" minlength= "3" maxlength= "30">
+
+          <mat-error *ngIf="formGroup.get('name').hasError('required')">O nome é obrigatório</mat-error>
         </mat-form-field>
       </mat-card>
 
@@ -15,6 +17,8 @@
         <mat-form-field class="full-width">
           <mat-label>Hero Description</mat-label>
           <input matInput placeholder="Hero Description" formControlName = "description" minlength="3">
+
+          <mat-error *ngIf="formGroup.get('description').hasError('required')">A descrição tem que ter no minimo 3 caracteres </mat-error>
         </mat-form-field>
       </mat-card>
 
@@ -24,6 +28,8 @@
         <mat-form-field class="full-width">
           <mat-label>Hero Image URL: </mat-label>
           <input matInput placeholder="Hero Image" formControlName = "image">
+
+          <mat-error *ngIf="formGroup.get('image').hasError('required')">A URL está invalida</mat-error>
         </mat-form-field>
       </mat-card>
 

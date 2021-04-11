@@ -1,5 +1,11 @@
 {
-  "projects": {
-    "default": "projeto-tuor-of-heros"
+  "targets": {
+    "projeto-tuor-of-heros": {
+      "hosting": {
+        "angular-tour-of-heroes": [
+          "projeto-tuor-of-heros"
+        ]
+      }
+    }
   }
 }

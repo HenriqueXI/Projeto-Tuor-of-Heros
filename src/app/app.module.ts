@@ -21,6 +21,7 @@ import { MessagesComponent } from './messages/messages.component';
 import { HeroEditComponent } from './hero-edit/hero-edit.component';
 import { HeroNewComponent } from './hero-new/hero-new.component';
 import { HeroFormComponent } from './hero-form/hero-form.component';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { HeroFormComponent } from './hero-form/hero-form.component';
     MatCardModule,
     MatButtonModule,
     MatIconModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    InfiniteScrollModule
   ],
   declarations: [
     AppComponent,

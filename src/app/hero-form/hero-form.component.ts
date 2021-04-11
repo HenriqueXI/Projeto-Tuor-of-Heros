@@ -1,5 +1,6 @@
 import { Component, Input, EventEmitter, Output, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
+import { ErrorStateMatcher } from '@angular/material/core';
 import { Hero, HeroUniverse } from '../hero';
 import { HeroService } from '../hero.service';
 
@@ -8,7 +9,7 @@ import { HeroService } from '../hero.service';
   templateUrl: './hero-form.component.html',
   styleUrls: ['./hero-form.component.css']
 })
-export class HeroFormComponent implements OnInit{
+export class HeroFormComponent implements OnInit, ErrorStateMatcher{
 
   //input hero recebe o heroi para a criação ou atualização, de acordo com a tela de presença do atributo id
   @Input() hero!: Hero;
@@ -26,11 +27,17 @@ export class HeroFormComponent implements OnInit{
     private formBuilder: FormBuilder
   ) { }
 
+
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const isSubmitted = form && form.submitted;
+    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+  }
+
   ngOnInit(){
     this.formGroup = this.formBuilder.group({
       name: [this.hero.name, [Validators.required]],
       id: [this.hero.id],
-      description: [this.hero.description],
+      description: [this.hero.description, [Validators.required]],
       image: [this.hero.imageUrl, [Validators.required, Validators.pattern(' *?https{0,1}:\/\/w{0,3}.*| *?ftp:\/\/w{0,3}.*| *?\n')]],
       universe: [this.hero.universe]
     });
