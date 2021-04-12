@@ -23,19 +23,20 @@ export class HeroesComponent implements OnInit {
 
   getHeroes(): void {
 
-    this.heroService.getHeroes(this.cursor)//ara o serviço agora estamos enviando o cursor como um parametro
-    .subscribe(heroesGetResponse => {
-      // Aqui temos uma condição para verificar se ao enviar a requisição tinha ou não um cursor
-      if (this.cursor) {
-        // Se tiver iremos concatenar a lista atual com os novos itens
-        this.heroes = this.heroes.concat(heroesGetResponse.heroes);
-      } else {
-        // Se não tinha cursor iremos somente atribuir
-        this.heroes = heroesGetResponse.heroes;
-      }
-      // E a cada requisição retornada iremos salvar o cursor
-      this.cursor = heroesGetResponse.cursor;
-    });
+    // Para o serviço agora estamos enviando o cursor como um parametro
+  this.heroService.getHeroes(this.cursor)
+  .subscribe(heroesGetResponse => {
+    // Aqui temos uma condição para verificar se ao enviar a requisição tinha ou não um cursor
+    if (this.cursor) {
+      // Se tiver iremos concatenar a lista atual com os novos itens
+      this.heroes = this.heroes.concat(heroesGetResponse.heroes);
+    } else {
+      // Se não tinha cursor iremos somente atribuir
+      this.heroes = heroesGetResponse.heroes;
+    }
+    // E a cada requisição retornada iremos salvar o cursor
+    this.cursor = heroesGetResponse.cursor;
+  });
   }
 
   delete(hero: Hero): void {
